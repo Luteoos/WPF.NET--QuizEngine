@@ -25,16 +25,19 @@ namespace QuizEngine.DataModel
             if (Question.ElementAt(which) != null)
             {
                 return Question.ElementAt(which);
-            } else
+            }
+            else
+            {
                 throw new Exception("No existing Question at " + which);
+            }
         }
         public List<string>GetAnswersGetAnswersList(int which)
         {
            
             if(TableAnswers.ElementAt(which)!=null)
-                {
-                  return  TableAnswers.ElementAt(which).Keys.ToList();
-                }
+            {
+                return  TableAnswers.ElementAt(which).Keys.ToList();
+            }
             else
             {
                 throw new Exception("No existing Answer dictionary at " + which);
@@ -51,35 +54,36 @@ namespace QuizEngine.DataModel
                 throw new Exception("No existing Answer dictionary at " + which);
             }
         }
-        /* public List<string> GetQuestions()
-       {
-
-           return this.Question;
-       }
-       public List<Dictionary<string,bool>>GetAnswers()
-       {
-           return this.TableAnswers;
-       }*/
-        /*tableosfic[0] = new Dictionary<string, bool>();
-            tableosfic[1] = new Dictionary<string, bool>();
-
-            bool a=tableosfic[0]["a"];
-
-
-            eh = new Dictionary<string, bool>();
-            QuestionNumber=eh.Count();
-            bool a=eh[eh.Keys.ElementAt(1)];
-            */
-        /* public void InitializeData(int QNumber)
-         {
-             //QuestionNumber = QNumber;
-             Question= new string[QNumber];
-             //TableAnswers = new Dictionary<string, bool>[QNumber];
-
-
-
-         }*/
-
-
     }
 }
+
+/* public List<string> GetQuestions()
+{
+
+   return this.Question;
+}
+public List<Dictionary<string,bool>>GetAnswers()
+{
+   return this.TableAnswers;
+}*/
+/*tableosfic[0] = new Dictionary<string, bool>();
+    tableosfic[1] = new Dictionary<string, bool>();
+
+    bool a=tableosfic[0]["a"];
+
+
+    eh = new Dictionary<string, bool>();
+    QuestionNumber=eh.Count();
+    bool a=eh[eh.Keys.ElementAt(1)];
+    */
+/* public void InitializeData(int QNumber)
+ {
+     //QuestionNumber = QNumber;
+     Question= new string[QNumber];
+     //TableAnswers = new Dictionary<string, bool>[QNumber];
+
+
+
+ }*/
+
+
