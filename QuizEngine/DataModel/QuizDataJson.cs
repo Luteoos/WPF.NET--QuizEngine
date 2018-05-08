@@ -19,15 +19,47 @@ namespace QuizEngine.DataModel
         {
 
         }
-        public List<string> GetQuestions()
+      
+        public string GetQuestion(int which)
         {
-            
-            return this.Question;
+            if (Question.ElementAt(which) != null)
+            {
+                return Question.ElementAt(which);
+            } else
+                throw new Exception("No existing Question at " + which);
         }
-        public List<Dictionary<string,bool>>GetAnswers()
+        public List<string>GetAnswersGetAnswersList(int which)
         {
-            return this.TableAnswers;
+           
+            if(TableAnswers.ElementAt(which)!=null)
+                {
+                  return  TableAnswers.ElementAt(which).Keys.ToList();
+                }
+            else
+            {
+                throw new Exception("No existing Answer dictionary at " + which);
+            }
         }
+        public List<bool>GetBoolAnswersList(int which)
+        {
+            if (TableAnswers.ElementAt(which) != null)
+            {
+                return TableAnswers.ElementAt(which).Values.ToList();
+            }
+            else
+            {
+                throw new Exception("No existing Answer dictionary at " + which);
+            }
+        }
+        /* public List<string> GetQuestions()
+       {
+
+           return this.Question;
+       }
+       public List<Dictionary<string,bool>>GetAnswers()
+       {
+           return this.TableAnswers;
+       }*/
         /*tableosfic[0] = new Dictionary<string, bool>();
             tableosfic[1] = new Dictionary<string, bool>();
 

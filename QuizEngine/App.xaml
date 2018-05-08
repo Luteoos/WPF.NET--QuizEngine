@@ -1,9 +1,8 @@
-﻿<Application x:Class="QuizEngine.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:QuizEngine"
-             StartupUri="View\ViewMainWindow.xaml">
+<Application x:Class="QuizEngine.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:QuizEngine" xmlns:vm="clr-namespace:QuizEngine.ViewModel" 
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <vm:ViewModelLocator x:Key="Locator" />
     </Application.Resources>
 </Application>
