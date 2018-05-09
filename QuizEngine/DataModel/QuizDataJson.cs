@@ -10,14 +10,14 @@ namespace QuizEngine.DataModel
 {
     class QuizDataJson
     {
-       
         private List<string> Question;
         //Dictionary<string,bool>[] TableAnswers;
-        private List<Dictionary<string, bool>> TableAnswers;
+        private List<Dictionary<string, bool>> Answers;
 
         public QuizDataJson()
         {
-
+            Question=new List<string>();
+            Answers=new List<Dictionary<string, bool>>();
         }
       
         public string GetQuestion(int which)
@@ -31,28 +31,39 @@ namespace QuizEngine.DataModel
                 throw new Exception("No existing Question at " + which);
             }
         }
+
         public List<string>GetAnswersGetAnswersList(int which)
         {
-           
-            if(TableAnswers.ElementAt(which)!=null)
+            if(Answers.ElementAt(which)!=null)
             {
-                return  TableAnswers.ElementAt(which).Keys.ToList();
+                return  Answers.ElementAt(which).Keys.ToList();
             }
             else
             {
                 throw new Exception("No existing Answer dictionary at " + which);
             }
         }
+
         public List<bool>GetBoolAnswersList(int which)
         {
-            if (TableAnswers.ElementAt(which) != null)
+            if (Answers.ElementAt(which) != null)
             {
-                return TableAnswers.ElementAt(which).Values.ToList();
+                return Answers.ElementAt(which).Values.ToList();
             }
             else
             {
                 throw new Exception("No existing Answer dictionary at " + which);
             }
+        }
+
+        public void AddQuestion(string Q)
+        {
+            Question.Add(Q);
+        }
+
+        public void AddAnswers(Dictionary<string,bool> groupOfAnswers)
+        {
+            Answers.Add(groupOfAnswers);
         }
     }
 }
