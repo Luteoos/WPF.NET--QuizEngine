@@ -8,10 +8,9 @@ using Newtonsoft.Json;
 
 namespace QuizEngine.DataModel
 {
-    class QuizDataJson
+    public class QuizDataJson
     {
         private List<string> Question;
-        //Dictionary<string,bool>[] TableAnswers;
         private List<Dictionary<string, bool>> Answers;
 
         public QuizDataJson()
@@ -22,35 +21,35 @@ namespace QuizEngine.DataModel
       
         public string GetQuestion(int which)
         {
-            if (Question.ElementAt(which) != null)
+            try
             {
-                return Question.ElementAt(which);
+                 return Question.ElementAt(which);
             }
-            else
+            catch (ArgumentOutOfRangeException)
             {
                 throw new Exception("No existing Question at " + which);
             }
         }
 
-        public List<string>GetAnswersGetAnswersList(int which)
+        public List<string>GetAnswersStringList(int which)
         {
-            if(Answers.ElementAt(which)!=null)
-            {
+            try
+            { 
                 return  Answers.ElementAt(which).Keys.ToList();
             }
-            else
+            catch(ArgumentOutOfRangeException)
             {
                 throw new Exception("No existing Answer dictionary at " + which);
             }
         }
 
-        public List<bool>GetBoolAnswersList(int which)
+        public List<bool>GetAnswersBoolList(int which)
         {
-            if (Answers.ElementAt(which) != null)
-            {
+            try
+            { 
                 return Answers.ElementAt(which).Values.ToList();
             }
-            else
+            catch(ArgumentOutOfRangeException)
             {
                 throw new Exception("No existing Answer dictionary at " + which);
             }

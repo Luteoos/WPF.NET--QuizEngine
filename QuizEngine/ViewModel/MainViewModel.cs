@@ -15,27 +15,42 @@ namespace QuizEngine.ViewModel
         
         public ICommand _SaveToFile { get; private set; }
         public ICommand _NextQuestion { get; private set; }
+        private string _question;
+      
 
         public MainViewModel()
         {
+            Debug.WriteLine("MAINVM");
             this._SaveToFile = new RelayCommand(SaveToFile,true);
             this._NextQuestion=new GalaSoft.MvvmLight.CommandWpf.RelayCommand(NextQuestion);
-           /* this.LoadDataCommand = new RelayCommand(() =>
-            {
-                this.Data = "xDDDD";
-            });*/
         }
 
         private void SaveToFile()
         {
-            Debug.WriteLine("testcompletedddd");
+            Debug.WriteLine("SaveToFile");
         }
 
         private void NextQuestion()
         {
-            Debug.WriteLine("testcompletedddd");
+            Debug.WriteLine("NextQuestion");
         }
-        //public ICommand LoadDataCommand { get; private set; }
+
+        public string Question
+        {
+            get
+            {
+              return _question;
+            }
+            set
+            {
+              _question = value;
+              RaisePropertyChanged("Question");
+            }
+        }
+    }
+}
+
+//public ICommand LoadDataCommand { get; private set; }
 /*
         public string Data
         {
@@ -49,5 +64,3 @@ namespace QuizEngine.ViewModel
                 this.RaisePropertyChanged("Data");
             }
         }*/
-    }
-}
