@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 
@@ -10,7 +8,10 @@ namespace QuizEngine.DataModel
 {
     public class QuizDataJson
     {
+
+        [JsonProperty]
         private List<string> Question;
+        [JsonProperty]
         private List<Dictionary<string, bool>> Answers;
 
         public QuizDataJson()
@@ -55,9 +56,9 @@ namespace QuizEngine.DataModel
             }
         }
 
-        public void AddQuestion(string Q)
+        public void AddQuestion(string q)
         {
-            Question.Add(Q);
+            Question.Add(q);
         }
 
         public void AddAnswers(Dictionary<string,bool> groupOfAnswers)

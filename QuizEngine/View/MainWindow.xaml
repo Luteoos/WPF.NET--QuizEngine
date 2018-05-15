@@ -5,19 +5,20 @@
         xmlns:local="clr-namespace:QuizEngine.View" xmlns:ViewModel="clr-namespace:QuizEngine.ViewModel" x:Class="QuizEngine.View.MainWindow" mc:Ignorable="d" 
         DataContext="{Binding MainViewModel, Source={StaticResource Locator}}" Title="Quiz Generator" Height="450" Width="600" ResizeMode="NoResize">
     <Grid Height="424" Margin="0,0,-28.4,-4" VerticalAlignment="Top" HorizontalAlignment="Left" Width="600">
-        <Button Content="Next Question" HorizontalAlignment="Left" Margin="475,363,0,0" VerticalAlignment="Top" Width="105" Height="41" Command="{Binding _NextQuestion, Mode=OneWay}"/>
-        <Button Content="Save to file" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top" Width="105" Height="41" Command="{Binding _SaveToFile, Mode=OneWay}" />
+        <Button Content="Next Question" HorizontalAlignment="Left" Margin="475,363,0,0" VerticalAlignment="Top" Width="105" Height="41" Command="{Binding _nextQuestion, Mode=OneWay}"/>
+        <Button Content="Save to file" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top" Width="105" Height="41" Command="{Binding _saveToFile, Mode=OneWay}" />
         <TextBox HorizontalAlignment="Left" Height="50" Margin="10,36,0,0" TextWrapping="Wrap" Text="{Binding Question}" VerticalAlignment="Top" Width="570" FontWeight="Bold">
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,91,0,0" TextWrapping="Wrap" Text="Type Answer Here" VerticalAlignment="Top" Width="521"/>
-        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,181,0,0" TextWrapping="Wrap" Text="Type Answer Here" VerticalAlignment="Top" Width="521"/>
-        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,136,0,0" TextWrapping="Wrap" Text="Type Answer Here" VerticalAlignment="Top" Width="521"/>
-        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,226,0,0" TextWrapping="Wrap" Text="Type Answer Here" VerticalAlignment="Top" Width="521"/>
-        <CheckBox HorizontalAlignment="Left" Margin="20,101,0,0" VerticalAlignment="Top"/>
-        <CheckBox  HorizontalAlignment="Left" Margin="20,145,0,0" VerticalAlignment="Top"/>
-        <CheckBox  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,193,0,0"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="20,238,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,91,0,0" TextWrapping="Wrap" Text="{Binding Answers[0], Mode=TwoWay}" VerticalAlignment="Top" Width="521"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,136,0,0" TextWrapping="Wrap" Text="{Binding Answers[1], Mode=TwoWay}" VerticalAlignment="Top" Width="521"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,181,0,0" TextWrapping="Wrap" Text="{Binding Answers[2], Mode=TwoWay}" VerticalAlignment="Top" Width="521"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="59,226,0,0" TextWrapping="Wrap" Text="{Binding Answers[3], Mode=TwoWay}" VerticalAlignment="Top" Width="521"/>
+        <CheckBox HorizontalAlignment="Left" Margin="20,101,0,0" VerticalAlignment="Top" IsChecked="{Binding BoolAnswers[0], Mode=TwoWay}"/>
+        <CheckBox HorizontalAlignment="Left" Margin="20,145,0,0" VerticalAlignment="Top" IsChecked="{Binding BoolAnswers[1], Mode=TwoWay}"/>
+        <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,193,0,0" IsChecked="{Binding BoolAnswers[2], Mode=TwoWay}"/>
+        <CheckBox HorizontalAlignment="Left" Margin="20,238,0,0" VerticalAlignment="Top" IsChecked="{Binding BoolAnswers[3], Mode=TwoWay}"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,271,0,0" TextWrapping="Wrap" 
                    Text="Check checkbox when correct answer" VerticalAlignment="Top" Height="20" Width="224"/>
-        </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="293,271,0,0" TextWrapping="Wrap" Text="{Binding Error}" VerticalAlignment="Top" Height="34" Width="287" FontSize="20" FontWeight="Bold" Foreground="Red"/>
+    </Grid>
 </Window>

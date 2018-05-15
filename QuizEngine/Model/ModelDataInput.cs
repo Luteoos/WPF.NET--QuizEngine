@@ -1,21 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuizEngine.DataModel;
+using Newtonsoft.Json;
 
 namespace QuizEngine.Model
 {
     public class ModelDataInput
     {
-        private Dictionary<string, bool> TempAnswers;
-        private string TempQuestion;
+ 
+        private readonly QuizDataJson Data;
 
         public ModelDataInput()
         {
-            Debug.WriteLine("MODEL");
-            TempAnswers =new Dictionary<string, bool>();
+            Data=new QuizDataJson();
+        }
+
+        public void AddPage(Dictionary<string,bool> answers,string question)
+        {
+            Data.AddAnswers(answers);
+            Data.AddQuestion(question);
+        }
+
+        public void SaveJson()
+        {
+            string converted=JsonConvert.SerializeObject(Data);
+            using (StreamWriter writer = File.CreateText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
+                    + @"\" + "Quiz_"+DateTime.Now.ToString("yy-MM-dd--hh-mm"))))
+            {
+                writer.Write(converted);
+            }
         }
     }
 }
