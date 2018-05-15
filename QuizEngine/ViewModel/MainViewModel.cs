@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
-using System.Collections;
 using System.Collections.ObjectModel;
 using QuizEngine.Model;
-using QuizEngine.View;
 
 namespace QuizEngine.ViewModel
 {
@@ -60,34 +53,55 @@ namespace QuizEngine.ViewModel
             }
         }
 #endregion
+
+        private bool ValidateNoDuplicates()
+        {
+            Error = "";
+            if (_answers.Contains("Type Answer here!"))
+            {
+                Error = "Can't leave default values!";
+                return false;
+            }
+            if (_answers.Count!= _answers.Distinct().Count())
+            {
+                Error = "Answers must be diffrent";
+                return false;
+            }
+            return true;
+        }
+
         private void SaveToFile()
         {
+            if (ValidateNoDuplicates())
+            {
+                Error = "Saving file with current page!";
+
+                Dictionary<string, bool> temporary = new Dictionary<string, bool>();
+                for (int i = 0; i < 4; i++)
+                {
+                    temporary.Add(_answers[i], _boolAnswers[i]);
+                }
+                Model.AddPage(temporary, _question);
+            }
+            Error = "Saving file without current page!";
             Model.SaveJson();
         }
 
         private void NextQuestion()
         {
-            Dictionary<string,bool> temporary=new Dictionary<string, bool>();
-
-            Error = "";
-            for (int i = 0; i < 4; i++)
+            if (ValidateNoDuplicates())
             {
-                if (!temporary.ContainsKey(_answers[i]))
+                Dictionary<string, bool> temporary = new Dictionary<string, bool>();
+
+                for (int i = 0; i < 4; i++)
                 {
                     temporary.Add(_answers[i], _boolAnswers[i]);
                 }
-                else
-                {
-                    Error = "Answers must be diffrent!";
-                    return;
-                }
-                   
+                Model.AddPage(temporary, _question);
+                AfterTextFill();
             }
-            Model.AddPage(temporary,_question);
-            AfterTextFill();
         }
 #region property to Binding
-
         public string Error
         {
             get
